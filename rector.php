@@ -20,7 +20,7 @@ return RectorConfig::configure()
     ->withSkip([
         __DIR__.'/bootstrap/cache',
         CompactToVariablesRector::class,
-//        AddOverrideAttributeToOverriddenMethodsRector::class,
+        //        AddOverrideAttributeToOverriddenMethodsRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,

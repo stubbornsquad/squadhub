@@ -59,11 +59,12 @@
         "test:refactor": "rector --dry-run",
         "refactor:fix": "rector",
         "test:unit": "pest --parallel --coverage --exactly=100",
+        "test:arch": "pest --testsuite=ArchTest",
         "test:code": "phpstan",
         "test": [
             "@test:lint",
-            "@test:code",
             "@test:refactor",
+            "@test:code",
             "@test:unit"
         ],
         "ci": [
