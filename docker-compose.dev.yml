@@ -14,11 +14,12 @@ services:
 
   php:
     build:
-      context: .
-      target: development
-      args:
-        USER_ID: ${SPIN_USER_ID:-1001}
-        GROUP_ID: ${SPIN_GROUP_ID:-1001}
+        context: ./.infrastructure/conf/php
+        dockerfile: Dockerfile
+        target: development
+        args:
+          USER_ID: ${SPIN_USER_ID}
+          GROUP_ID: ${SPIN_GROUP_ID}
     volumes:
       - .:/var/www/html/
     networks:
@@ -34,11 +35,19 @@ services:
 
   node:
     image: node:20
+    command: "npm dev"
     volumes:
       - .:/usr/src/app/
     working_dir: /usr/src/app/
     networks:
       - development
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.node.rule=Host(`localhost`)"
+      - "traefik.http.routers.node.entrypoints=websecure"
+      - "traefik.http.routers.node.tls=true"
+      - "traefik.http.services.node.loadbalancer.server.port=3000"
+      - "traefik.http.services.node.loadbalancer.server.scheme=http"
 
   mailpit:
       image: axllent/mailpit
