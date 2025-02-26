@@ -49,6 +49,23 @@ services:
       - "traefik.http.services.node.loadbalancer.server.port=3000"
       - "traefik.http.services.node.loadbalancer.server.scheme=http"
 
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - ./.infrastructure/postgres_data:/var/lib/postgresql/data
+    networks:
+      - development
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
   mailpit:
       image: axllent/mailpit
       networks:
