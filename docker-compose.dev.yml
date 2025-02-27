@@ -1,8 +1,8 @@
 services:
   traefik:
     ports:
-    - "80:80"
-    - "443:443"
+      - "80:80"
+      - "443:443"
     networks:
       development:
     volumes:
@@ -14,12 +14,12 @@ services:
 
   php:
     build:
-        context: ./.infrastructure/conf/php
-        dockerfile: Dockerfile
-        target: development
-        args:
-          USER_ID: ${SPIN_USER_ID}
-          GROUP_ID: ${SPIN_GROUP_ID}
+      context: ./.infrastructure/conf/php
+      dockerfile: Dockerfile
+      target: development
+      args:
+        USER_ID: ${SPIN_USER_ID}
+        GROUP_ID: ${SPIN_GROUP_ID}
     volumes:
       - .:/var/www/html/
     networks:
@@ -50,28 +50,47 @@ services:
       - "traefik.http.services.node.loadbalancer.server.scheme=http"
 
   postgres:
-    image: postgres:15
+    image: &pgsql_image postgres:15
     restart: unless-stopped
     environment:
+      POSTGRES_DB: ${DB_DATABASE}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "5432:5432"
     volumes:
       - ./.infrastructure/postgres_data:/var/lib/postgresql/data
     networks:
       - development
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME}"]
-      interval: 30s
+      test: pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}
+      interval: 3s
       timeout: 10s
-      retries: 5
+      retries: 3
+
+  test-postgres:
+    image: *pgsql_image
+    container_name: test-db-pgsql
+    command: postgres -c 'max_connections=250' -c 'max_locks_per_transaction=128'
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: test_squadhub
+      POSTGRES_USER: test_squadhub
+      POSTGRES_PASSWORD: test_password
+    networks:
+      - development
+    healthcheck:
+      test: pg_isready -U test_squadhub -d test_squadhub
+      interval: 3s
+      timeout: 10s
+      retries: 3
 
   mailpit:
-      image: axllent/mailpit
-      networks:
-        - development
-      ports:
-        - "8025:8025"
+    image: axllent/mailpit
+    networks:
+      - development
+    ports:
+      - "8025:8025"
 
 networks:
   development:

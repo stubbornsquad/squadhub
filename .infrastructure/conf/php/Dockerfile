@@ -16,7 +16,7 @@ ARG USER_ID
 ARG GROUP_ID
 
 # Enable xdebug
-RUN install-php-extensions xdebug
+RUN install-php-extensions xdebug intl zip
 # Copy custom xdebug configuration
 COPY xdebug-dev.ini /usr/local/etc/php/conf.d/
 
