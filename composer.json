@@ -7,7 +7,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "filament/filament": "^3.3",
+        "filament/filament": "^3.3.2",
         "laravel/framework": "^11.44.0",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.6"
@@ -61,10 +61,11 @@
         "lint:fix": "pint",
         "test:refactor": "rector --dry-run",
         "refactor:fix": "rector",
-        "test:unit": "pest --parallel --coverage --exactly=100",
+        "test:unit": "pest --parallel --coverage --exactly=100 --stop-on-failure --stop-on-error",
         "test:arch": "pest --testsuite=ArchTest",
         "test:code": "phpstan",
         "test": [
+            "@php artisan config:clear",
             "@test:lint",
             "@test:refactor",
             "@test:code",
