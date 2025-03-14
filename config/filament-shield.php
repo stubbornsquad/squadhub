@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'shield_resource' => [
         'should_register_navigation' => true,
@@ -29,11 +31,6 @@ return [
     'panel_user' => [
         'enabled' => false,
         'name' => 'panel_user',
-    ],
-
-    'player_user' => [
-        'enabled' => false,
-        'name' => 'player',
     ],
 
     'permission_prefixes' => [

@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers\Filament;
 
 use App\Enums\PanelsEnum;
-use App\Http\Middleware\RedirectToProperPanelMiddleware;
-use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -21,7 +21,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class PlayerPanelProvider extends PanelProvider
+final class PlayerPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {

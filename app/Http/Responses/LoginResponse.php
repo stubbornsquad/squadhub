@@ -1,29 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Responses;
 
 use App\Enums\PanelsEnum;
 use App\Enums\RolesEnum;
-use App\Filament\Support\Utils;
 use App\Models\User;
-use Filament\Facades\Filament;
+use Filament\Http\Responses\Auth\LoginResponse as BaseLoginResponse;
 use Filament\Pages\Dashboard;
-use Filament\Panel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Livewire\Features\SupportRedirects\Redirector;
-use Filament\Http\Responses\Auth\LoginResponse as BaseLoginResponse;
 
-class LoginResponse extends BaseLoginResponse
+final class LoginResponse extends BaseLoginResponse
 {
     /**
      * Redirect the user after they have logged in.
      *
-     * @param Request $request
-     * @return RedirectResponse|Redirector
+     * @param  Request  $request
      */
-
-    public function toResponse($request): RedirectResponse|Redirector
+    public function toResponse($request): RedirectResponse
     {
         /** @var User $user */
         $user = auth()->user();
@@ -41,4 +37,3 @@ class LoginResponse extends BaseLoginResponse
         return redirect()->to('/login');
     }
 }
-

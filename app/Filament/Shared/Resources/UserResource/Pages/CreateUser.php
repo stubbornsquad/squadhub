@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace app\Filament\Shared\Resources\UserResource\Pages;
 
 use app\Filament\Shared\Resources\UserResource;
@@ -7,7 +9,7 @@ use App\Models\User;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
 
-class CreateUser extends CreateRecord
+final class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
 

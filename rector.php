@@ -19,6 +19,7 @@ return RectorConfig::configure()
     ])
     ->withSkip([
         __DIR__.'/bootstrap/cache',
+        __DIR__.'/config/filament-shield.php',
         CompactToVariablesRector::class,
         //        AddOverrideAttributeToOverriddenMethodsRector::class,
     ])

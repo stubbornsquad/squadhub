@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Enums;
+declare(strict_types=1);
 
+namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
@@ -19,6 +20,7 @@ enum PanelsEnum: string implements HasLabel
     public function getLabel(): string
     {
         return match ($this) {
+            self::AUTH => 'Auth',
             self::SQUADHUB => 'SquadHub',
             self::CLAN => 'Clan',
             self::PLAYER => 'Player',

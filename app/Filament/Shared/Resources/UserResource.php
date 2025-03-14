@@ -1,9 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace app\Filament\Shared\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -12,7 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class UserResource extends Resource
+final class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
@@ -38,7 +38,7 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->searchable(),
                 Tables\Columns\TextColumn::make('email')->copyable()
-                ->copyMessage('Email copied to clipboard')->searchable(),
+                    ->copyMessage('Email copied to clipboard')->searchable(),
                 Tables\Columns\TextColumn::make('roles.name')->searchable(),
                 Tables\Columns\TextColumn::make('email_verified_at'),
 
@@ -66,9 +66,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \app\Filament\Shared\Resources\UserResource\Pages\ListUsers::route('/'),
-            'create' => \app\Filament\Shared\Resources\UserResource\Pages\CreateUser::route('/create'),
-            'edit' => \app\Filament\Shared\Resources\UserResource\Pages\EditUser::route('/{record}/edit'),
+            'index' => UserResource\Pages\ListUsers::route('/'),
+            'create' => UserResource\Pages\CreateUser::route('/create'),
+            'edit' => UserResource\Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }

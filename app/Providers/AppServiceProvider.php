@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
@@ -13,10 +12,12 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
-
 final class AppServiceProvider extends ServiceProvider
 {
-    public $singletons = [
+    /**
+     * @var array<string, string>
+     */
+    public array $singletons = [
         \Filament\Http\Responses\Auth\Contracts\LoginResponse::class => \App\Http\Responses\LoginResponse::class,
         \Filament\Http\Responses\Auth\Contracts\LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
     ];
