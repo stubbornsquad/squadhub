@@ -53,7 +53,6 @@ class PlayerPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
-
                 Authenticate::class,
             ]);
     }

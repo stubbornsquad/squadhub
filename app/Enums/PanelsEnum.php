@@ -7,6 +7,7 @@ use Filament\Support\Contracts\HasLabel;
 
 enum PanelsEnum: string implements HasLabel
 {
+    case AUTH = 'auth';
     case SQUADHUB = 'admin';
     case CLAN = 'staff';
     case PLAYER = 'player';

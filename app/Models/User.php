@@ -46,9 +46,10 @@ final class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel, ): bool
     {
         return match ($panel->getId()) {
-            RolesEnum::ADMIN->value => $this->hasRole(RolesEnum::ADMIN->value),
-            RolesEnum::STAFF->value => $this->hasRole(RolesEnum::STAFF->value),
-            RolesEnum::PLAYER->value => $this->hasRole(RolesEnum::PLAYER->value),
+            PanelsEnum::AUTH->value => true, // Added true fot have possibility get correct redirect based on user role in LoginResponse
+            PanelsEnum::SQUADHUB->value => $this->hasRole(RolesEnum::ADMIN->value),
+            PanelsEnum::CLAN->value => $this->hasRole(RolesEnum::STAFF->value),
+            PanelsEnum::PLAYER->value => $this->hasRole(RolesEnum::PLAYER->value),
             default => false,
         };
     }

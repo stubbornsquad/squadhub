@@ -30,7 +30,7 @@ class AuthPanelProvider extends PanelProvider
         return $panel
             ->id('auth')
             ->path('')
-            ->login(Login::class)
+            ->login()
             ->registration()
             ->passwordReset()
             ->colors([
@@ -46,10 +46,9 @@ class AuthPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-
             ])
             ->authMiddleware([
-//                RedirectToProperPanelMiddleware::class,
+                RedirectToProperPanelMiddleware::class,
                 Authenticate::class,
             ]);
     }
