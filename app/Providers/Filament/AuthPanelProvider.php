@@ -48,7 +48,6 @@ class AuthPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
-                RedirectToProperPanelMiddleware::class,
                 Authenticate::class,
             ]);
     }
