@@ -6,7 +6,6 @@
 /public/storage
 /storage/*.key
 /storage/pail
-/storage/*
 /.infrastructure/postgres_data/
 /.infrastructure/volume_data/
 /vendor
