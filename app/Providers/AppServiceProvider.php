@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
@@ -12,8 +13,14 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
+
 final class AppServiceProvider extends ServiceProvider
 {
+    public $singletons = [
+        \Filament\Http\Responses\Auth\Contracts\LoginResponse::class => \App\Http\Responses\LoginResponse::class,
+        \Filament\Http\Responses\Auth\Contracts\LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
+    ];
+
     /**
      * Register any application services.
      */
@@ -57,7 +64,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function configureModels(): void
     {
-        //        Model::unguard();
+        Model::unguard();
         Model::shouldBeStrict();
     }
 

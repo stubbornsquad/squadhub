@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 final class DatabaseSeeder extends Seeder
 {
@@ -15,11 +17,25 @@ final class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $adminUser = User::factory()->create([
+            'name' => 'SmereKa',
+            'email' => 'admin@admin.com',
         ]);
+        $adminRole = Role::create(['name' => 'admin']);
+        $adminUser->roles()->attach($adminRole);
+
+        $staffUser = User::factory()->create([
+            'name' => 'Bona',
+            'email' => 'staff@staff.com',
+        ]);
+        $staffRole = Role::create(['name' => 'staff']);
+        $staffUser->roles()->attach($staffRole);
+
+        $playerUser = User::factory()->create([
+            'name' => 'Mona',
+            'email' => 'player@player.com',
+        ]);
+        $playerRole = Role::create(['name' => 'player']);
+        $playerUser->roles()->attach($playerRole);
     }
 }
