@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Enums\PanelsEnum;
+use App\Enums\RolesEnum;
+use BezhanSalleh\FilamentShield\FilamentShield;
+use BezhanSalleh\PanelSwitch\PanelSwitch;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
@@ -35,11 +40,14 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->enableSuperAdminAccess();
         $this->configureCommands();
         $this->configureDates();
         $this->configureModels();
         $this->configureUrls();
         $this->configureVite();
+        $this->configurePanelSwitchPlugin();
+
     }
 
     /**
@@ -49,6 +57,9 @@ final class AppServiceProvider extends ServiceProvider
     {
         DB::prohibitDestructiveCommands(
             $this->app->isProduction(),
+        );
+        FilamentShield::prohibitDestructiveCommands(
+            $this->app->isProduction()
         );
     }
 
@@ -83,5 +94,58 @@ final class AppServiceProvider extends ServiceProvider
     private function configureVite(): void
     {
         Vite::useAggressivePrefetching();
+    }
+
+    /**
+     * Enable super admin access.
+     */
+    private function enableSuperAdminAccess(): void
+    {
+        Gate::before(fn($user, $ability): ?true => $user->hasRole('super_admin') ? true : null);
+    }
+
+    /**
+     * Configure the PanelSwitch plugin.
+     *
+     * @url https://filamentphp.com/plugins/bezhansalleh-panel-switch
+     */
+    private function configurePanelSwitchPlugin(): void
+    {
+        PanelSwitch::configureUsing(function (PanelSwitch $panelSwitch): void {
+            $panelSwitch
+                ->visible(fn (): bool => ! auth()->user()?->hasAnyRole(RolesEnum::PLAYER)) // Hide the panel switcher for players
+                ->panels(
+                    function () {
+                        // Super Admins and Admins can access all panels
+                        if (auth()->user()?->hasAnyRole([RolesEnum::SUPER_ADMIN, RolesEnum::ADMIN])) {
+                            return [
+                                PanelsEnum::SQUADHUB->value,
+                                PanelsEnum::CLAN->value,
+                                PanelsEnum::PLAYER->value,
+                            ];
+                        }
+                        // Staff can access the staff and player panels
+                        if (auth()->user()?->hasAnyRole([RolesEnum::STAFF])) {
+                            return [
+                                PanelsEnum::CLAN->value,
+                                PanelsEnum::PLAYER->value,
+                            ];
+                        }
+                    })
+                ->modalHeading('Available Panels')
+                ->modalWidth('sm')
+                ->slideOver()
+                ->icons([
+                    PanelsEnum::SQUADHUB->value => 'heroicon-o-square-2-stack',
+                    PanelsEnum::CLAN->value => 'heroicon-o-star',
+                    PanelsEnum::PLAYER->value => 'heroicon-o-star',
+                ])
+                ->iconSize(16)
+                ->labels([
+                    PanelsEnum::SQUADHUB->value => 'SquadHub Panel',
+                    PanelsEnum::CLAN->value => 'Clan Panel',
+                    PanelsEnum::PLAYER->value => 'Player Panel',
+                ]);
+        });
     }
 }

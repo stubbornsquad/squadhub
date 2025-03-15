@@ -11,6 +11,7 @@ use Filament\Http\Responses\Auth\LoginResponse as BaseLoginResponse;
 use Filament\Pages\Dashboard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Livewire\Features\SupportRedirects\Redirector;
 
 final class LoginResponse extends BaseLoginResponse
 {
@@ -19,7 +20,7 @@ final class LoginResponse extends BaseLoginResponse
      *
      * @param  Request  $request
      */
-    public function toResponse($request): RedirectResponse
+    public function toResponse($request): Redirector|RedirectResponse
     {
         /** @var User $user */
         $user = auth()->user();

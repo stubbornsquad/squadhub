@@ -8,8 +8,9 @@ use Filament\Support\Contracts\HasLabel;
 
 enum RolesEnum: string implements HasLabel
 {
-    case ADMIN = 'admin'; // admin role contain access to all panels and all features
-    case STAFF = 'staff'; // staff role contain access to staff panel and staff features
+    case SUPER_ADMIN = 'super_admin'; // super admin role contain access to all panels and all features
+    case ADMIN = 'admin'; // admin role contain access to admin, staff, player panel and admin, staff, player features
+    case STAFF = 'staff'; // staff role contain access to staff, player panel and staff, player features
     case PLAYER = 'player'; // player role contain access to player panel and player features
 
     /**
@@ -19,6 +20,7 @@ enum RolesEnum: string implements HasLabel
     public function getLabel(): string
     {
         return match ($this) {
+            self::SUPER_ADMIN => 'Super Admin',
             self::ADMIN => 'Admin',
             self::STAFF => 'Staff',
             self::PLAYER => 'Player',

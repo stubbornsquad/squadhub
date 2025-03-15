@@ -22,7 +22,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-final class SquadhubPanelProvider extends PanelProvider
+final class SquadHubPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
@@ -32,9 +32,9 @@ final class SquadhubPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
-            ->discoverResources(in: app_path('Filament/Squadhub/Resources'), for: 'App\\Filament\\Squadhub\\Resources')
+            ->discoverResources(in: app_path('Filament/SquadHub/Resources'), for: 'App\\Filament\\SquadHub\\Resources')
             ->discoverResources(in: app_path('Filament/Shared/Resources'), for: 'App\\Filament\\Shared\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverPages(in: app_path('Filament/SquadHub/Pages'), for: 'App\\Filament\\SquadHub\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
@@ -56,7 +56,8 @@ final class SquadhubPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ])->plugins([
+            ])
+            ->plugins([
                 FilamentShieldPlugin::make(),
             ]);
     }

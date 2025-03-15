@@ -54,7 +54,6 @@ final class ClanPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
-
                 Authenticate::class,
             ])
             ->plugins([
