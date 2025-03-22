@@ -1,0 +1,43 @@
+name: squad-hub
+recipe: laravel
+
+excludes:
+  - vendor
+  - node_modules
+
+config:
+  php: '8.4'
+  via: nginx
+  webroot: public
+  database: postgres
+  cache: redis
+  ssl: false
+  xdebug: true
+
+services:
+  database:
+    type: postgres:16
+    portforward: 5432
+  appserver:
+    type: php:8.4
+    ssl: true
+    build_as_root:
+      - apt-get update -y
+      - apt install nano libxslt1-dev -y
+      - apt-get install cron -y
+      - docker-php-ext-install xsl
+      - service cron start
+    build:
+      - '[ ! -f ".env" ] && cp .env.example .env || echo ".env already present"'
+      - composer install
+      - php artisan key:generate
+      - php artisan migrate
+    overrides:
+      volumes:
+        - ./:/app:cached
+      depends_on:
+        - database
+    run_as_root:
+      - service cron start
+    run:
+      - crontab .lando/cron.txt
