@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Enums\PanelsEnum;
-use App\Enums\RolesEnum;
+use App\Enums\PanelEnum;
+use App\Enums\RoleEnum;
 use BezhanSalleh\FilamentShield\FilamentShield;
 use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
 use Database\Factories\UserFactory;
@@ -43,10 +43,10 @@ final class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return match ($panel->getId()) {
-            PanelsEnum::AUTH->value => true, // Added true fot have possibility get correct redirect based on user role in LoginResponse
-            PanelsEnum::SQUADHUB->value => $this->hasRole(RolesEnum::ADMIN->value),
-            PanelsEnum::CLAN->value => $this->hasRole(RolesEnum::STAFF->value),
-            PanelsEnum::PLAYER->value => $this->hasRole(RolesEnum::PLAYER->value),
+            PanelEnum::AUTH->value => true, // Added true fot have possibility get correct redirect based on user role in LoginResponse
+            PanelEnum::SQUADHUB->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::ADMIN->value),
+            PanelEnum::CLAN->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::STAFF->value),
+            PanelEnum::PLAYER->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::PLAYER->value),
             default => false,
         };
     }

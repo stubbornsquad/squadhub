@@ -17,51 +17,10 @@ final class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $adminUser = User::factory()->create([
-            'name' => 'SmereKa',
-            'email' => 'admin@admin.com',
+        $this->call([
+            RoleAndPermissionSeeder::class,
+            SuperAdminUserSeeder::class,
+            UserSeeder::class,
         ]);
-        $adminRole = Role::create(['name' => 'admin']);
-        $adminUser->assignRole([$adminRole]);
-
-        $adminPermissions = [
-            'view_any_role',
-            'view_role',
-            'create_role',
-            'update_role',
-            'delete_role',
-            'delete_any_role',
-        ];
-
-        foreach ($adminPermissions as $permissionName) {
-            Permission::create([
-                'name' => $permissionName,
-            ]);
-        }
-
-        $adminRole->givePermissionTo($adminPermissions);
-
-        $staffUser = User::factory()->create([
-            'name' => 'Bona',
-            'email' => 'staff@staff.com',
-        ]);
-
-        $staffRole = Role::create(['name' => 'staff']);
-        $staffUser->assignRole([$staffRole]);
-
-        $staffPermissions = [
-            'view_role',
-            'create_role',
-            'update_role',
-            'delete_role',
-        ];
-        $staffRole->givePermissionTo($staffPermissions);
-
-        $playerUser = User::factory()->create([
-            'name' => 'Mona',
-            'email' => 'player@player.com',
-        ]);
-        $playerRole = Role::create(['name' => 'player']);
-        $playerUser->assignRole([$playerRole]);
     }
 }

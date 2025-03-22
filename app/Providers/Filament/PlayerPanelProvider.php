@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
-use App\Enums\PanelsEnum;
+use App\Enums\PanelEnum;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -28,7 +28,7 @@ final class PlayerPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id(PanelsEnum::PLAYER->value)
+            ->id(PanelEnum::PLAYER->value)
             ->path('player')
             ->colors([
                 'primary' => Color::Indigo,

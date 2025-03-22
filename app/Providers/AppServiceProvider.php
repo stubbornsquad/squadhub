@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Enums\PanelsEnum;
-use App\Enums\RolesEnum;
+use App\Enums\PanelEnum;
+use App\Enums\RoleEnum;
 use BezhanSalleh\FilamentShield\FilamentShield;
 use BezhanSalleh\PanelSwitch\PanelSwitch;
 use Carbon\CarbonImmutable;
@@ -101,7 +101,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function enableSuperAdminAccess(): void
     {
-        Gate::before(fn($user, $ability): ?true => $user->hasRole(RolesEnum::SUPER_ADMIN) ? true : null);
+        Gate::before(fn($user, $ability): ?true => $user->hasRole(RoleEnum::SUPER_ADMIN) ? true : null);
     }
 
     /**
@@ -113,22 +113,22 @@ final class AppServiceProvider extends ServiceProvider
     {
         PanelSwitch::configureUsing(function (PanelSwitch $panelSwitch): void {
             $panelSwitch
-                ->visible(fn (): bool => ! auth()->user()?->hasAnyRole(RolesEnum::PLAYER)) // Hide the panel switcher for players
+                ->visible(fn (): bool => ! auth()->user()?->hasAnyRole(RoleEnum::PLAYER)) // Hide the panel switcher for players
                 ->panels(
                     function () {
                         // Super Admins and Admins can access all panels
-                        if (auth()->user()?->hasAnyRole([RolesEnum::SUPER_ADMIN, RolesEnum::ADMIN])) {
+                        if (auth()->user()?->hasAnyRole([RoleEnum::SUPER_ADMIN, RoleEnum::ADMIN])) {
                             return [
-                                PanelsEnum::SQUADHUB->value,
-                                PanelsEnum::CLAN->value,
-                                PanelsEnum::PLAYER->value,
+                                PanelEnum::SQUADHUB->value,
+                                PanelEnum::CLAN->value,
+                                PanelEnum::PLAYER->value,
                             ];
                         }
                         // Staff can access the staff and player panels
-                        if (auth()->user()?->hasAnyRole([RolesEnum::STAFF])) {
+                        if (auth()->user()?->hasAnyRole([RoleEnum::STAFF])) {
                             return [
-                                PanelsEnum::CLAN->value,
-                                PanelsEnum::PLAYER->value,
+                                PanelEnum::CLAN->value,
+                                PanelEnum::PLAYER->value,
                             ];
                         }
                     })
@@ -136,15 +136,15 @@ final class AppServiceProvider extends ServiceProvider
                 ->modalWidth('sm')
                 ->slideOver()
                 ->icons([
-                    PanelsEnum::SQUADHUB->value => 'heroicon-o-square-2-stack',
-                    PanelsEnum::CLAN->value => 'heroicon-o-star',
-                    PanelsEnum::PLAYER->value => 'heroicon-o-star',
+                    PanelEnum::SQUADHUB->value => 'heroicon-o-square-2-stack',
+                    PanelEnum::CLAN->value => 'heroicon-o-star',
+                    PanelEnum::PLAYER->value => 'heroicon-o-star',
                 ])
                 ->iconSize(16)
                 ->labels([
-                    PanelsEnum::SQUADHUB->value => 'SquadHub Panel',
-                    PanelsEnum::CLAN->value => 'Clan Panel',
-                    PanelsEnum::PLAYER->value => 'Player Panel',
+                    PanelEnum::SQUADHUB->value => 'SquadHub Panel',
+                    PanelEnum::CLAN->value => 'Clan Panel',
+                    PanelEnum::PLAYER->value => 'Player Panel',
                 ]);
         });
     }

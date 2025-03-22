@@ -6,7 +6,7 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
-enum RolesEnum: string implements HasLabel
+enum RoleEnum: string implements HasLabel
 {
     case SUPER_ADMIN = 'super_admin'; // super admin role contain access to all panels and all features
     case ADMIN = 'admin'; // admin role contain access to admin, staff, player panel and admin, staff, player features

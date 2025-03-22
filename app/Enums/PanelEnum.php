@@ -6,7 +6,7 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
-enum PanelsEnum: string implements HasLabel
+enum PanelEnum: string implements HasLabel
 {
     case AUTH = 'auth';
     case SQUADHUB = 'admin';

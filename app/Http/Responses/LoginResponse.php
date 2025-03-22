@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Responses;
 
-use App\Enums\PanelsEnum;
-use App\Enums\RolesEnum;
+use App\Enums\PanelEnum;
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Filament\Http\Responses\Auth\LoginResponse as BaseLoginResponse;
 use Filament\Pages\Dashboard;
@@ -25,9 +25,9 @@ final class LoginResponse extends BaseLoginResponse
         /** @var User $user */
         $user = auth()->user();
         $targetPanel = match (true) {
-            $user->hasRole(RolesEnum::ADMIN->value) => PanelsEnum::SQUADHUB->value,
-            $user->hasRole(RolesEnum::STAFF->value) => PanelsEnum::CLAN->value,
-            $user->hasRole(RolesEnum::PLAYER->value) => PanelsEnum::PLAYER->value,
+            $user->hasRole(RoleEnum::SUPER_ADMIN->value) || $user->hasRole(RoleEnum::ADMIN->value) => PanelEnum::SQUADHUB->value,
+            $user->hasRole(RoleEnum::SUPER_ADMIN->value) || $user->hasRole(RoleEnum::STAFF->value) => PanelEnum::CLAN->value,
+            $user->hasRole(RoleEnum::SUPER_ADMIN->value) || $user->hasRole(RoleEnum::PLAYER->value) => PanelEnum::PLAYER->value,
             default => null,
         };
 
