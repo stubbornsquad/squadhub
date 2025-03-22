@@ -85,7 +85,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function configureUrls(): void
     {
-        //        URL::forceScheme('https');
+//        URL::forceScheme('https');
     }
 
     /**
@@ -101,7 +101,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function enableSuperAdminAccess(): void
     {
-        Gate::before(fn($user, $ability): ?true => $user->hasRole('super_admin') ? true : null);
+        Gate::before(fn($user, $ability): ?true => $user->hasRole(RolesEnum::SUPER_ADMIN) ? true : null);
     }
 
     /**
