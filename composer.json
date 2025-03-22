@@ -7,9 +7,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "bezhansalleh/filament-panel-switch": "^1.0",
+        "bezhansalleh/filament-panel-switch": "^1.0.7",
         "bezhansalleh/filament-shield": "^3.3.5",
-        "filament/filament": "^3.3.4",
+        "filament/filament": "^3.3.5",
         "laravel/framework": "^11.44.2",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.6.2"
@@ -17,11 +17,11 @@
     "require-dev": {
         "driftingly/rector-laravel": "^2.0.2",
         "fakerphp/faker": "^1.24.1",
-        "larastan/larastan": "^3.1.0",
+        "larastan/larastan": "^3.2.0",
         "laravel/pail": "^1.2.2",
-        "laravel/pint": "^1.21.1",
+        "laravel/pint": "^1.21.2",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.6.1",
+        "nunomaduro/collision": "^8.7.0",
         "pestphp/pest": "^3.7.4",
         "rector/rector": "^2.0.10",
         "serversideup/spin": "^3.0.2"
