@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Providers\Filament;
 
 use App\Enums\PanelEnum;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -20,6 +23,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
+use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 
 final class ClanPanelProvider extends PanelProvider
 {
@@ -37,10 +42,26 @@ final class ClanPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->userMenuItems([
+                'profile' => MenuItem::make()
+                    ->label(fn() => auth()->user()->name)
+                    ->url(fn (): string => EditProfilePage::getUrl())
+                    ->icon('heroicon-m-user-circle')
+            ])
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('Dashboard'),
+                NavigationGroup::make()
+                    ->label('Settings'),
+            ])
             ->discoverWidgets(in: app_path('Filament/Clan/Widgets'), for: 'App\\Filament\\Clan\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
+            ])
+            ->plugins([
+                FilamentShieldPlugin::make(),
+                FilamentEditProfilePlugin::make()
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -55,9 +76,6 @@ final class ClanPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ])
-            ->plugins([
-                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
             ]);
     }
 }

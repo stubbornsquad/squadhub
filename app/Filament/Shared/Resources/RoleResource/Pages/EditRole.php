@@ -39,7 +39,7 @@ final class EditRole extends EditRecord
         return Arr::only($data, ['name', 'guard_name']);
     }
 
-    private function afterSave(): void
+    protected function afterSave(): void
     {
         $permissionModels = collect();
         $this->permissions->each(function ($permission) use ($permissionModels): void {
