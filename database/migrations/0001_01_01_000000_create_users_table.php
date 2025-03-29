@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table): void {
             $table->id();
 
+            $table->string('discord_id')->nullable()->unique();
+            $table->string('steam_id')->nullable()->unique();
+
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
