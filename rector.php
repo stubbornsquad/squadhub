@@ -21,21 +21,18 @@ return RectorConfig::configure()
         __DIR__.'/bootstrap/cache',
         __DIR__.'/config/filament-shield.php',
         CompactToVariablesRector::class,
-        //        AddOverrideAttributeToOverriddenMethodsRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,
+        codingStyle: true,
         typeDeclarations: true,
         privatization: true,
         earlyReturn: true,
         strictBooleans: true,
+        rectorPreset: true,
     )
     ->withSets([
-        LaravelLevelSetList::UP_TO_LARAVEL_110,
+        LaravelLevelSetList::UP_TO_LARAVEL_120,
     ])
-    ->withPhpSets();
-//    ->withCache(
-//        cacheDirectory: (__DIR__ . '/storage/rector'),
-//        cacheClass: FileCacheStorage::class,
-//    )
+    ->withPhpSets(php84: true);
