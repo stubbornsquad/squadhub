@@ -44,9 +44,9 @@ final class ClanPanelProvider extends PanelProvider
             ])
             ->userMenuItems([
                 'profile' => MenuItem::make()
-                    ->label(fn() => auth()->user()->name)
+                    ->label(fn () => auth()->user()->name)
                     ->url(fn (): string => EditProfilePage::getUrl())
-                    ->icon('heroicon-m-user-circle')
+                    ->icon('heroicon-m-user-circle'),
             ])
             ->navigationGroups([
                 NavigationGroup::make()
@@ -61,7 +61,7 @@ final class ClanPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentShieldPlugin::make(),
-                FilamentEditProfilePlugin::make()
+                FilamentEditProfilePlugin::make(),
             ])
             ->middleware([
                 EncryptCookies::class,

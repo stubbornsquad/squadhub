@@ -26,7 +26,7 @@ final class LoginResponse extends BaseLoginResponse
         $user = auth()->user();
         $targetPanel = match (true) {
             $user->hasRole(RoleEnum::SUPER_ADMIN->value) || $user->hasRole(RoleEnum::ADMIN->value) => PanelEnum::SQUADHUB->value,
-            $user->hasRole(RoleEnum::SUPER_ADMIN->value) ||   $user->hasRole(RoleEnum::STAFF->value) => PanelEnum::CLAN->value,
+            $user->hasRole(RoleEnum::SUPER_ADMIN->value) || $user->hasRole(RoleEnum::STAFF->value) => PanelEnum::CLAN->value,
             $user->hasRole(RoleEnum::SUPER_ADMIN->value) || $user->hasRole(RoleEnum::PLAYER->value) => PanelEnum::PLAYER->value,
             default => null,
         };

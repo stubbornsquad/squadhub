@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament::section aside>
     <x-slot name="heading">
         {{ __('filament-edit-profile::default.token_section_title') }}
@@ -9,3 +14,4 @@
     {{ $this->table }}
 </x-filament::section>
 
+<?php 

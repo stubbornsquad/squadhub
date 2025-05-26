@@ -85,7 +85,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function configureUrls(): void
     {
-//        URL::forceScheme('https');
+        //        URL::forceScheme('https');
     }
 
     /**
@@ -101,7 +101,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function enableSuperAdminAccess(): void
     {
-        Gate::before(fn($user, $ability): ?true => $user->hasRole(RoleEnum::SUPER_ADMIN) ? true : null);
+        Gate::before(fn ($user, $ability): ?true => $user->hasRole(RoleEnum::SUPER_ADMIN) ? true : null);
     }
 
     /**
@@ -124,6 +124,7 @@ final class AppServiceProvider extends ServiceProvider
                                 PanelEnum::PLAYER->value,
                             ];
                         }
+
                         // Staff can access the staff and player panels
                         if (auth()->user()?->hasAnyRole([RoleEnum::STAFF])) {
                             return [

@@ -22,6 +22,7 @@ return new class extends Migration
         if (empty($tableNames)) {
             throw new Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
         }
+
         if ($teams && empty($columnNames['team_foreign_key'] ?? null)) {
             throw new Exception('Error: team_foreign_key on config/permission.php not loaded. Run [php artisan config:clear] and try again.');
         }
@@ -43,6 +44,7 @@ return new class extends Migration
                 $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
                 $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
             }
+
             $table->string('name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
             $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
             $table->timestamps();

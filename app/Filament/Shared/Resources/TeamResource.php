@@ -1,21 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Shared\Resources;
 
 use App\Filament\Shared\Resources\TeamResource\Pages;
-use App\Filament\Shared\Resources\TeamResource\RelationManagers;
 use App\Models\Team;
-use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TeamResource extends Resource
+final class TeamResource extends Resource
 {
     protected static ?string $model = Team::class;
 

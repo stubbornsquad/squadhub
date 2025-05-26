@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament-panels::form wire:submit="updatePassword">
     {{ $this->form }}
 
@@ -9,3 +14,4 @@
         </div>
     </div>
 </x-filament-panels::form>
+<?php 

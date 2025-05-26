@@ -45,9 +45,9 @@ final class SquadHubPanelProvider extends PanelProvider
             ])
             ->userMenuItems([
                 'profile' => MenuItem::make()
-                    ->label(fn() => auth()->user()->name)
+                    ->label(fn () => auth()->user()->name)
                     ->url(fn (): string => EditProfilePage::getUrl())
-                    ->icon('heroicon-m-user-circle')
+                    ->icon('heroicon-m-user-circle'),
             ])
             ->navigationGroups([
                 NavigationGroup::make()
@@ -69,8 +69,8 @@ final class SquadHubPanelProvider extends PanelProvider
                     ->setIcon('heroicon-o-user')
                     ->shouldShowAvatarForm(
                         directory: 'user-avatars', // image will be stored in 'storage/app/public/avatars
-                        rules: 'mimes:jpeg,png|max:1024' //only accept jpeg and png files with a maximum size of 1MB
-                    )
+                        rules: 'mimes:jpeg,png|max:1024' // only accept jpeg and png files with a maximum size of 1MB
+                    ),
             ])
             ->middleware([
                 EncryptCookies::class,

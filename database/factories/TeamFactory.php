@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -7,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Team>
  */
-class TeamFactory extends Factory
+final class TeamFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,24 +20,23 @@ class TeamFactory extends Factory
     {
 
         $socialMediaLinks = json_encode([
-            'twitch' => $this->faker->url,
-            'youtube' => $this->faker->url,
-            'discord' => $this->faker->url,
-            'website' => $this->faker->url,
+            'twitch' => fake()->url,
+            'youtube' => fake()->url,
+            'discord' => fake()->url,
+            'website' => fake()->url,
         ]);
 
-
         return [
-            'name' => $this->faker->unique()->company,
-            'tag' => $this->faker->unique()->word,
-            'slug' => $this->faker->unique()->slug,
-            'logo_url' => $this->faker->imageUrl(),
-            'description' => $this->faker->text,
-            'region' => $this->faker->country,
-            'primary_language' => $this->faker->languageCode,
+            'name' => fake()->unique()->company,
+            'tag' => fake()->unique()->word,
+            'slug' => fake()->unique()->slug,
+            'logo_url' => fake()->imageUrl(),
+            'description' => fake()->text,
+            'region' => fake()->country,
+            'primary_language' => fake()->languageCode,
             'social_media_links' => $socialMediaLinks,
-            'recruitment_status' => $this->faker->boolean,
-            'founded_in' => $this->faker->dateTimeThisCentury,
+            'recruitment_status' => fake()->boolean,
+            'founded_in' => fake()->dateTimeThisCentury,
         ];
     }
 }

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-dynamic-component
     :component="$getFieldWrapperView()"
     :field="$field"
@@ -52,3 +57,4 @@
         </div>
     </div>
 </x-dynamic-component>
+<?php 
