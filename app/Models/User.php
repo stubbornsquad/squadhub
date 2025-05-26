@@ -13,8 +13,10 @@ use DateTimeInterface;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -48,6 +50,7 @@ final class User extends Authenticatable implements FilamentUser
 
     /**
      * Check if the user has access to a specific panel
+     * @throws \Exception
      */
     public function canAccessPanel(Panel $panel): bool
     {
@@ -75,8 +78,20 @@ final class User extends Authenticatable implements FilamentUser
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            'email_verified_at' => 'immutable_datetime',
             'password' => 'hashed',
+            'created_at' => 'immutable_datetime',
+            'updated_at' => 'immutable_datetime',
         ];
+    }
+
+    /*
+     * Get the player data
+     *
+     * @return HasOne<Player, $this>
+     */
+    public function player(): HasOne
+    {
+        return $this->hasOne(Player::class);
     }
 }
