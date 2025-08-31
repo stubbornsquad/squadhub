@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Filament\Auth\Http\Responses\Contracts\LoginResponse;
+use Filament\Auth\Http\Responses\Contracts\LogoutResponse;
 use App\Enums\PanelEnum;
 use App\Enums\RoleEnum;
 use BezhanSalleh\FilamentShield\FilamentShield;
@@ -23,8 +25,8 @@ final class AppServiceProvider extends ServiceProvider
      * @var array<string, string>
      */
     public array $singletons = [
-        \Filament\Http\Responses\Auth\Contracts\LoginResponse::class => \App\Http\Responses\LoginResponse::class,
-        \Filament\Http\Responses\Auth\Contracts\LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
+        LoginResponse::class => \App\Http\Responses\LoginResponse::class,
+        LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
     ];
 
     /**

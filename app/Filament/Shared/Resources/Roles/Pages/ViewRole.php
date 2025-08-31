@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\RoleResource\Pages;
+namespace App\Filament\Shared\Resources\Roles\Pages;
 
-use App\Filament\Shared\Resources\RoleResource;
+use Filament\Actions\EditAction;
+use App\Filament\Shared\Resources\Roles\RoleResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
 
@@ -15,7 +16,7 @@ final class ViewRole extends ViewRecord
     protected function getActions(): array
     {
         return [
-            Actions\EditAction::make(),
+            EditAction::make(),
         ];
     }
 }

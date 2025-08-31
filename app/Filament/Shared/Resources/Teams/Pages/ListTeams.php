@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\TeamResource\Pages;
+namespace App\Filament\Shared\Resources\Teams\Pages;
 
-use App\Filament\Shared\Resources\TeamResource;
+use Filament\Actions\CreateAction;
+use App\Filament\Shared\Resources\Teams\TeamResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -15,7 +16,7 @@ final class ListTeams extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

@@ -7,13 +7,12 @@ namespace App\Http\Responses;
 use App\Enums\PanelEnum;
 use App\Enums\RoleEnum;
 use App\Models\User;
-use Filament\Http\Responses\Auth\LoginResponse as BaseLoginResponse;
 use Filament\Pages\Dashboard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Livewire\Features\SupportRedirects\Redirector;
 
-final class LoginResponse extends BaseLoginResponse
+final class LoginResponse extends \Filament\Auth\Http\Responses\LoginResponse
 {
     /**
      * Redirect the user after they have logged in.

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Exception;
 use App\Enums\PanelEnum;
 use App\Enums\RoleEnum;
 use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
@@ -50,7 +51,7 @@ final class User extends Authenticatable implements FilamentUser
 
     /**
      * Check if the user has access to a specific panel
-     * @throws \Exception
+     * @throws Exception
      */
     public function canAccessPanel(Panel $panel): bool
     {

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace app\Filament\Shared\Resources\UserResource\Pages;
+namespace App\Filament\Shared\Resources\Users\Pages;
 
-use app\Filament\Shared\Resources\UserResource;
+use Filament\Actions\DeleteAction;
+use App\Filament\Shared\Resources\Users\UserResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -15,7 +16,7 @@ final class EditUser extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Filament\Shared\Resources\PlayerResource\Pages;
+namespace App\Filament\Shared\Resources\Players\Pages;
 
-use App\Filament\Shared\Resources\PlayerResource;
+use Filament\Actions\CreateAction;
+use App\Filament\Shared\Resources\Players\PlayerResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -13,7 +14,7 @@ class ListPlayers extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

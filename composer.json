@@ -7,26 +7,25 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "bezhansalleh/filament-panel-switch": "^1.1.1",
-        "bezhansalleh/filament-shield": "^3.3.6",
-        "filament/filament": "^3.3.16",
-        "joaopaulolndev/filament-edit-profile": "^1.0.43",
-        "laravel/framework": "^11.45.0",
+        "bezhansalleh/filament-panel-switch": "^2.0",
+        "bezhansalleh/filament-shield": "^4.0",
+        "filament/filament": "^4.0.4",
+        "laravel/framework": "^12.26.4",
         "laravel/tinker": "^2.10.1",
-        "livewire/livewire": "^3.6.3"
+        "livewire/livewire": "^3.6.4"
     },
     "require-dev": {
-        "driftingly/rector-laravel": "^2.0.5",
+        "driftingly/rector-laravel": "^2.0.7",
         "fakerphp/faker": "^1.24.1",
-        "larastan/larastan": "^3.4.0",
-        "laravel/pail": "^1.2.2",
-        "laravel/pint": "^1.22.1",
+        "larastan/larastan": "^3.6.1",
+        "laravel/pail": "^1.2.3",
+        "laravel/pint": "^1.24.0",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.8.0",
-        "pestphp/pest": "^3.8.2",
-        "pestphp/pest-plugin-type-coverage": "^3.5",
-        "rector/rector": "^2.0.16",
-        "serversideup/spin": "^3.0.2"
+        "nunomaduro/collision": "^8.8.2",
+        "pestphp/pest": "^4.0.4 ",
+        "pestphp/pest-plugin-type-coverage": "^4.0.2",
+        "rector/rector": "^2.1.4",
+        "serversideup/spin": "^3.0.3"
     },
     "autoload": {
         "psr-4": {
@@ -90,6 +89,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "beta",
     "prefer-stable": true
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace app\Filament\Shared\Resources\UserResource\Pages;
+namespace App\Filament\Shared\Resources\Users\Pages;
 
-use app\Filament\Shared\Resources\UserResource;
+use App\Filament\Shared\Resources\Users\UserResource;
 use App\Models\User;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;

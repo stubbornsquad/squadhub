@@ -2,21 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\RoleResource\Pages;
+namespace App\Filament\Shared\Resources\Roles\Pages;
 
-use App\Filament\Shared\Resources\RoleResource;
+use Filament\Actions\DeleteAction;
+use App\Filament\Shared\Resources\Roles\RoleResource;
 use BezhanSalleh\FilamentShield\Support\Utils;
-use Filament\Resources\Pages\CreateRecord;
+use Filament\Actions;
+use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-final class CreateRole extends CreateRecord
+final class EditRole extends EditRecord
 {
     public Collection $permissions;
 
     protected static string $resource = RoleResource::class;
 
-    protected function mutateFormDataBeforeCreate(array $data): array
+    protected function getActions(): array
+    {
+        return [
+            DeleteAction::make(),
+        ];
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
     {
         $this->permissions = collect($data)
             ->filter(fn ($permission, $key): bool => ! in_array($key, ['name', 'guard_name', 'select_all', Utils::getTenantModelForeignKey()]))
@@ -31,12 +40,11 @@ final class CreateRole extends CreateRecord
         return Arr::only($data, ['name', 'guard_name']);
     }
 
-    private function afterCreate(): void
+    private function afterSave(): void
     {
         $permissionModels = collect();
         $this->permissions->each(function ($permission) use ($permissionModels): void {
             $permissionModels->push(Utils::getPermissionModel()::firstOrCreate([
-                /** @phpstan-ignore-next-line */
                 'name' => $permission,
                 'guard_name' => $this->data['guard_name'],
             ]));

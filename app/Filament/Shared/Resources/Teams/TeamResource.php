@@ -2,13 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources;
+namespace App\Filament\Shared\Resources\Teams;
 
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Shared\Resources\Teams\Pages\ListTeams;
+use App\Filament\Shared\Resources\Teams\Pages\CreateTeam;
+use App\Filament\Shared\Resources\Teams\Pages\EditTeam;
 use App\Filament\Shared\Resources\TeamResource\Pages;
 use App\Models\Team;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,12 +25,12 @@ final class TeamResource extends Resource
 {
     protected static ?string $model = Team::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('name'),
                 Select::make('primary_language')
                     ->options([
@@ -45,32 +53,32 @@ final class TeamResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('tag')
+                TextColumn::make('tag')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('region')
+                TextColumn::make('region')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\ToggleColumn::make('recruitment_status')
+                ToggleColumn::make('recruitment_status')
                     ->label('Recruiting')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('founded_in')->dateTime('Y')
+                TextColumn::make('founded_in')->dateTime('Y')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')->dateTime('Y-m-d')
+                TextColumn::make('created_at')->dateTime('Y-m-d')
                     ->sortable(),
             ])
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -85,9 +93,9 @@ final class TeamResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTeams::route('/'),
-            'create' => Pages\CreateTeam::route('/create'),
-            'edit' => Pages\EditTeam::route('/{record}/edit'),
+            'index' => ListTeams::route('/'),
+            'create' => CreateTeam::route('/create'),
+            'edit' => EditTeam::route('/{record}/edit'),
         ];
     }
 }
