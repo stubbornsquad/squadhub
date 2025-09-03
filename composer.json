@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "stabbornsquad/squadhub",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "SquadHub - The Ultimate Team Management System",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
@@ -60,18 +60,16 @@
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
         ],
-        "rector": "rector",
-        "lint": "pint",
-        "test:rector": "rector --dry-run",
-        "test:lint": "pint --test",
+        "lint": "pint --test",
+        "lint:fix": "pint",
+        "rector": "rector --dry-run",
+        "rector:fix": "rector",
         "test:types": "phpstan analyse",
         "test:unit": "pest --colors=always --parallel --coverage --exactly=100",
         "test:type-coverage": "pest --type-coverage --min=100",
         "test": [
-            "@test:type-coverage",
-            "@test:rector",
-            "@test:lint",
-            "@test:types",
+            "@rector",
+            "@lint",
             "@test:unit"
         ]
     },
