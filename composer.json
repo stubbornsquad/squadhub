@@ -1,5 +1,5 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
+    "$schema": "https://getcomp+oser.org/schema.json",
     "name": "stabbornsquad/squadhub",
     "type": "project",
     "description": "SquadHub - The Ultimate Team Management System",
