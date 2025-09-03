@@ -9,9 +9,6 @@ use Illuminate\Database\Seeder;
 
 final class TeamSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Team::factory()->count(5)->create();

@@ -9,15 +9,13 @@ config:
   php: '8.4'
   via: nginx
   webroot: public
-  database: postgres
-  cache: redis
-  ssl: false
-  xdebug: true
+  xdebug: false
 
 services:
-  database:
-    type: postgres:16
-    portforward: 5432
+  mysql:
+    type: mysql:8.4
+    portforward: 3306
+
   appserver:
     type: php:8.4
     ssl: true
