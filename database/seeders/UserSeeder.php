@@ -10,28 +10,25 @@ use Illuminate\Database\Seeder;
 
 final class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Super Admin User',
+            'nickname' => 'Super Admin User',
             'email' => 'super@super.com',
         ])->assignRole(RoleEnum::SUPER_ADMIN);
 
         User::factory()->create([
-            'name' => 'Admin User',
+            'nickname' => 'Admin User',
             'email' => 'admin@admin.com',
         ])->assignRole(RoleEnum::ADMIN->value);
 
         User::factory()->create([
-            'name' => 'Staff User',
+            'nickname' => 'Staff User',
             'email' => 'staff@staff.com',
         ])->assignRole([RoleEnum::STAFF->value]);
 
         User::factory()->create([
-            'name' => 'Player User',
+            'nickname' => 'Player User',
             'email' => 'player@player.com',
         ])->assignRole(RoleEnum::PLAYER->value);
     }

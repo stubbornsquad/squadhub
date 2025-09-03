@@ -9,7 +9,6 @@ use Filament\Support\Contracts\HasLabel;
 enum PanelEnum: string implements HasLabel
 {
     case AUTH = 'auth';
-    case SQUADHUB = 'admin';
     case CLAN = 'staff';
     case PLAYER = 'player';
 
@@ -21,7 +20,6 @@ enum PanelEnum: string implements HasLabel
     {
         return match ($this) {
             self::AUTH => 'Auth',
-            self::SQUADHUB => 'SquadHub',
             self::CLAN => 'Clan',
             self::PLAYER => 'Player',
         };

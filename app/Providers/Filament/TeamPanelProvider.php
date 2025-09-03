@@ -25,7 +25,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-final class ClanPanelProvider extends PanelProvider
+final class TeamPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
@@ -43,7 +43,7 @@ final class ClanPanelProvider extends PanelProvider
             ])
             ->userMenuItems([
                 'profile' => MenuItem::make()
-                    ->label(fn () => auth()->user()->name)
+                    ->label(fn () => auth()->user()->nickname)
                     ->icon('heroicon-m-user-circle'),
             ])
             ->navigationGroups([

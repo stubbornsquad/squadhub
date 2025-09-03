@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,17 +28,6 @@ final class AppServiceProvider extends ServiceProvider
         LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
     ];
 
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         $this->enableSuperAdminAccess();
@@ -121,7 +109,6 @@ final class AppServiceProvider extends ServiceProvider
                         // Super Admins and Admins can access all panels
                         if (auth()->user()?->hasAnyRole([RoleEnum::SUPER_ADMIN, RoleEnum::ADMIN])) {
                             return [
-                                PanelEnum::SQUADHUB->value,
                                 PanelEnum::CLAN->value,
                                 PanelEnum::PLAYER->value,
                             ];
@@ -139,13 +126,11 @@ final class AppServiceProvider extends ServiceProvider
                 ->modalWidth('sm')
                 ->slideOver()
                 ->icons([
-                    PanelEnum::SQUADHUB->value => 'heroicon-o-square-2-stack',
                     PanelEnum::CLAN->value => 'heroicon-o-star',
                     PanelEnum::PLAYER->value => 'heroicon-o-star',
                 ])
                 ->iconSize(16)
                 ->labels([
-                    PanelEnum::SQUADHUB->value => 'SquadHub Panel',
                     PanelEnum::CLAN->value => 'Clan Panel',
                     PanelEnum::PLAYER->value => 'Player Panel',
                 ]);

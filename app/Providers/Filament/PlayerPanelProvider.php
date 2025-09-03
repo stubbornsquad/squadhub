@@ -31,6 +31,7 @@ final class PlayerPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->profile()
             ->id(PanelEnum::PLAYER->value)
             ->path('player')
             ->colors([
@@ -43,7 +44,7 @@ final class PlayerPanelProvider extends PanelProvider
             ])
             ->userMenuItems([
                 'profile' => MenuItem::make()
-                    ->label(fn () => auth()->user()->name)
+                    ->label(fn () => auth()->user()->nickname)
                     ->icon('heroicon-m-user-circle'),
             ])
             ->navigationGroups([
