@@ -9,12 +9,12 @@ use App\Enums\RoleEnum;
 use Filament\Auth\Http\Responses\Contracts\RegistrationResponse as BaseRegistrationResponse;
 use Filament\Pages\Dashboard;
 
-class RegistrationResponse implements BaseRegistrationResponse
+final class RegistrationResponse implements BaseRegistrationResponse
 {
     public function toResponse($request)
     {
         $user = auth()->user();
-        if (!$user) {
+        if (! $user) {
             return redirect()->route('filament.login');
         }
 

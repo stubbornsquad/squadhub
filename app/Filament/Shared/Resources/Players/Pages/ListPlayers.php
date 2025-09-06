@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Shared\Resources\Players\Pages;
 
 use App\Filament\Shared\Resources\Players\PlayerResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListPlayers extends ListRecords
+final class ListPlayers extends ListRecords
 {
     protected static string $resource = PlayerResource::class;
 

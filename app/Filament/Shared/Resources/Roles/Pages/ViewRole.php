@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Filament\Shared\Resources\Roles\Pages;
 
-use Filament\Actions\EditAction;
 use App\Filament\Shared\Resources\Roles\RoleResource;
-use Filament\Actions;
+use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
 final class ViewRole extends ViewRecord

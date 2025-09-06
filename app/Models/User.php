@@ -38,21 +38,6 @@ final class User extends Authenticatable implements FilamentUser, HasName
     use Notifiable;
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'immutable_datetime',
-            'password' => 'hashed',
-            'created_at' => 'immutable_datetime',
-            'updated_at' => 'immutable_datetime',
-        ];
-    }
-
-    /**
      * @var array{
      *     password: string,
      *     remember_token: string
@@ -64,7 +49,7 @@ final class User extends Authenticatable implements FilamentUser, HasName
     ];
 
     /**
-     * @return  HasOne<Player, $this>
+     * @return HasOne<Player, $this>
      */
     public function player(): HasOne
     {
@@ -87,5 +72,20 @@ final class User extends Authenticatable implements FilamentUser, HasName
     public function getFilamentName(): string
     {
         return $this->nickname;
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'immutable_datetime',
+            'password' => 'hashed',
+            'created_at' => 'immutable_datetime',
+            'updated_at' => 'immutable_datetime',
+        ];
     }
 }

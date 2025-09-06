@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pages;
 
 use App\Enums\GamePlayStyleEnum;
@@ -25,7 +27,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\HtmlString;
 
-class Registration extends Register
+final class Registration extends Register
 {
     public function getMaxContentWidth(): Width
     {
@@ -59,7 +61,7 @@ class Registration extends Register
                         ]),
                 ])
 //                    ->skippable()
-                    ->submitAction(new HtmlString(Blade::render(<<<BLADE
+                    ->submitAction(new HtmlString(Blade::render(<<<'BLADE'
                     <x-filament::button
                         type="submit"
                         size="sm"
@@ -70,11 +72,6 @@ class Registration extends Register
                     BLADE
                     ))),
             ]);
-    }
-
-    protected function getFormActions(): array
-    {
-        return [];
     }
 
     public function register(): ?RegistrationResponse
@@ -134,6 +131,10 @@ class Registration extends Register
         return app(RegistrationResponse::class);
     }
 
+    protected function getFormActions(): array
+    {
+        return [];
+    }
 
     private function getNickNameFormComponent(): TextInput
     {

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Filament\Auth\Http\Responses\Contracts\LoginResponse;
-use Filament\Auth\Http\Responses\Contracts\LogoutResponse;
 use App\Enums\PanelEnum;
 use App\Enums\RoleEnum;
 use BezhanSalleh\FilamentShield\FilamentShield;
 use BezhanSalleh\PanelSwitch\PanelSwitch;
 use Carbon\CarbonImmutable;
+use Filament\Auth\Http\Responses\Contracts\LoginResponse;
+use Filament\Auth\Http\Responses\Contracts\LogoutResponse;
 use Filament\Auth\Http\Responses\Contracts\RegistrationResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
@@ -22,11 +22,11 @@ use Illuminate\Support\ServiceProvider;
 final class AppServiceProvider extends ServiceProvider
 {
     /** @var array<class-string, class-string> */
-//    public array $singletons = [
-//        LoginResponse::class => \App\Http\Responses\LoginResponse::class,
-//        LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
-//        RegistrationResponse::class => \App\Http\Responses\RegistrationResponse::class,
-//    ];
+    //    public array $singletons = [
+    //        LoginResponse::class => \App\Http\Responses\LoginResponse::class,
+    //        LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
+    //        RegistrationResponse::class => \App\Http\Responses\RegistrationResponse::class,
+    //    ];
 
     public function register(): void
     {
@@ -128,6 +128,8 @@ final class AppServiceProvider extends ServiceProvider
                                 PanelEnum::PLAYER->value,
                             ];
                         }
+
+                        return false; // No panels available
                     })
                 ->modalHeading('Available Panels')
                 ->modalWidth('sm')

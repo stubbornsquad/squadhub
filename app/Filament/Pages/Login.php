@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pages;
 
 use Filament\Auth\Pages\Login as BaseLogin;
@@ -7,7 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use SensitiveParameter;
 
-class Login extends BaseLogin
+final class Login extends BaseLogin
 {
     public function form(Schema $schema): Schema
     {

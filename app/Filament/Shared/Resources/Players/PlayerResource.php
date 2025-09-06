@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Shared\Resources\Players;
 
 use App\Filament\Shared\Resources\Players\Pages\CreatePlayer;
@@ -16,7 +18,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class PlayerResource extends Resource
+final class PlayerResource extends Resource
 {
     protected static ?string $model = Player::class;
 

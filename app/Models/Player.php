@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Carbon\CarbonImmutable;
@@ -22,10 +24,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read CarbonImmutable|null $joined_at
  * @property-read CarbonImmutable|null $created_at
  * @property-read CarbonImmutable|null $updated_at
- *
  * @property-read User $user
  */
-class Player extends Model
+final class Player extends Model
 {
     /** @use HasFactory<PlayerFactory> */
     use HasFactory;

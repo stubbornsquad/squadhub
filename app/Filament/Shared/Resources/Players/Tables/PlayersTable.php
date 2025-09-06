@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Shared\Resources\Players\Tables;
 
 use Filament\Actions\BulkActionGroup;
@@ -7,11 +9,10 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class PlayersTable
+final class PlayersTable
 {
     public static function configure(Table $table): Table
     {
@@ -53,7 +54,7 @@ class PlayersTable
                     ->label('Previous Teams')
                     ->badge()
                     ->separator()
-                    ->formatStateUsing(fn($state) => is_array($state) ? implode(', ', $state) : $state),
+                    ->formatStateUsing(fn ($state) => is_array($state) ? implode(', ', $state) : $state),
             ])
             ->filters([
                 //

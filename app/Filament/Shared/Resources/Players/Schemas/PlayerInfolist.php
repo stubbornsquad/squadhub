@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Shared\Resources\Players\Schemas;
 
 use Filament\Schemas\Schema;
 
-class PlayerInfolist
+final class PlayerInfolist
 {
     public static function configure(Schema $schema): Schema
     {
