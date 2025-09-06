@@ -128,8 +128,6 @@ final class AppServiceProvider extends ServiceProvider
                                 PanelEnum::PLAYER->value,
                             ];
                         }
-
-                        return false; // No panels available
                     })
                 ->modalHeading('Available Panels')
                 ->modalWidth('sm')

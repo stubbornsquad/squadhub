@@ -60,7 +60,6 @@ final class Registration extends Register
                             $this->getPasswordConfirmationFormComponent(),
                         ]),
                 ])
-//                    ->skippable()
                     ->submitAction(new HtmlString(Blade::render(<<<'BLADE'
                     <x-filament::button
                         type="submit"

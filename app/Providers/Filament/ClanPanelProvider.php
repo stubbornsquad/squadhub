@@ -36,6 +36,7 @@ final class ClanPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
             ])
             ->maxContentWidth('full')
+            ->resourceCreatePageRedirect('index')
             ->discoverResources(in: app_path('Filament/Clan/Resources'), for: 'App\\Filament\\Clan\\Resources')
             ->discoverResources(in: app_path('Filament/Shared/Resources'), for: 'App\\Filament\\Shared\\Resources')
             ->discoverPages(in: app_path('Filament/Clan/Pages'), for: 'App\\Filament\\Clan\\Pages')

@@ -39,6 +39,7 @@ final class PlayerPanelProvider extends PanelProvider
                 'primary' => Color::Indigo,
             ])
             ->maxContentWidth('full')
+            ->resourceCreatePageRedirect('index')
             ->discoverResources(in: app_path('Filament/Player/Resources'), for: 'App\\Filament\\Player\\Resources')
             ->discoverPages(in: app_path('Filament/Player/Pages'), for: 'App\\Filament\\Player\\Pages')
             ->pages([

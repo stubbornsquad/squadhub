@@ -29,11 +29,6 @@ final class PlayerResource extends Resource
         return PlayerForm::configure($schema);
     }
 
-    public static function infolist(Schema $schema): Schema
-    {
-        return PlayerInfolist::configure($schema);
-    }
-
     public static function table(Table $table): Table
     {
         return PlayersTable::configure($table);
@@ -51,7 +46,6 @@ final class PlayerResource extends Resource
         return [
             'index' => ListPlayers::route('/'),
             'create' => CreatePlayer::route('/create'),
-            'view' => ViewPlayer::route('/{record}'),
             'edit' => EditPlayer::route('/{record}/edit'),
         ];
     }
