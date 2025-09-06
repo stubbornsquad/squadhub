@@ -38,18 +38,6 @@ final class RoleResource extends Resource implements HasShieldPermissions
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public static function getPermissionPrefixes(): array
-    {
-        return [
-            'view',
-            'view_any',
-            'create',
-            'update',
-            'delete',
-            'delete_any',
-        ];
-    }
-
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -220,5 +208,23 @@ final class RoleResource extends Resource implements HasShieldPermissions
     public static function canGloballySearch(): bool
     {
         return Utils::isResourceGloballySearchable() && count(self::getGloballySearchableAttributes()) && self::canViewAny();
+    }
+
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'view_role',
+            'view_any_role',
+            'create_role',
+            'update_role',
+            'restore_role',
+            'restore_any_role',
+            'replicate_role',
+            'reorder_role',
+            'delete_role',
+            'delete_any_role',
+            'force_delete_role',
+            'force_delete_any_role',
+        ];
     }
 }

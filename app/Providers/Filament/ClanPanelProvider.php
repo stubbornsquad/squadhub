@@ -25,7 +25,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-final class TeamPanelProvider extends PanelProvider
+final class ClanPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
@@ -35,6 +35,7 @@ final class TeamPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->maxContentWidth('full')
             ->discoverResources(in: app_path('Filament/Clan/Resources'), for: 'App\\Filament\\Clan\\Resources')
             ->discoverResources(in: app_path('Filament/Shared/Resources'), for: 'App\\Filament\\Shared\\Resources')
             ->discoverPages(in: app_path('Filament/Clan/Pages'), for: 'App\\Filament\\Clan\\Pages')

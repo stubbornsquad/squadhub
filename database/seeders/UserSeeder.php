@@ -14,22 +14,14 @@ final class UserSeeder extends Seeder
     {
         User::factory()->create([
             'nickname' => 'Super Admin User',
-            'email' => 'super@super.com',
         ])->assignRole(RoleEnum::SUPER_ADMIN);
 
         User::factory()->create([
-            'nickname' => 'Admin User',
-            'email' => 'admin@admin.com',
-        ])->assignRole(RoleEnum::ADMIN->value);
-
-        User::factory()->create([
             'nickname' => 'Staff User',
-            'email' => 'staff@staff.com',
         ])->assignRole([RoleEnum::STAFF->value]);
 
         User::factory()->create([
             'nickname' => 'Player User',
-            'email' => 'player@player.com',
         ])->assignRole(RoleEnum::PLAYER->value);
     }
 }

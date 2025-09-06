@@ -12,9 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read int $id
  * @property int $user_id
  * @property string $steam_id
- * @property string $nickname
  * @property string|null $avatar
- * @property string $nationality
  * @property array|null $previous_teams
  * @property string $first_game_role
  * @property string $second_game_role

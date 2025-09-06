@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Login;
 use App\Filament\Pages\Registration;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -26,7 +27,7 @@ final class AuthPanelProvider extends PanelProvider
         return $panel
             ->id('auth')
             ->path('')
-            ->login()
+            ->login(Login::class)
             ->registration(Registration::class)
             ->passwordReset()
             ->colors([

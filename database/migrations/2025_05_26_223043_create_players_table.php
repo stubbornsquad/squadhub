@@ -6,20 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('steam_id')->unique();
-            $table->string('discord_id')->unique();
+            $table->string('discord_user_id')->unique();
 
-            $table->string('nickname')->unique();
             $table->string('avatar')->nullable();
-            $table->string('nationality');
             $table->json('previous_teams')->nullable();
 
             $table->string('first_game_role');

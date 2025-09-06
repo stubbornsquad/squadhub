@@ -78,9 +78,8 @@ final class User extends Authenticatable implements FilamentUser, HasName
     {
         return match ($panel->getId()) {
             PanelEnum::AUTH->value => true, // Added true fot have possibility get correct redirect based on user role in LoginResponse
-            $this->hasRole(RoleEnum::ADMIN->value),
-            PanelEnum::CLAN->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::ADMIN->value) || $this->hasRole(RoleEnum::STAFF->value),
-            PanelEnum::PLAYER->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::ADMIN->value) || $this->hasRole(RoleEnum::STAFF->value) || $this->hasRole(RoleEnum::PLAYER->value),
+            PanelEnum::CLAN->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::STAFF->value),
+            PanelEnum::PLAYER->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::STAFF->value) || $this->hasRole(RoleEnum::PLAYER->value),
             default => false,
         };
     }

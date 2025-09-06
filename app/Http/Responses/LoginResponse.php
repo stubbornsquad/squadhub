@@ -24,7 +24,6 @@ final class LoginResponse extends \Filament\Auth\Http\Responses\LoginResponse
         /** @var User $user */
         $user = auth()->user();
         $targetPanel = match (true) {
-            $user->hasRole(RoleEnum::SUPER_ADMIN->value) ||
             $user->hasRole(RoleEnum::SUPER_ADMIN->value) || $user->hasRole(RoleEnum::STAFF->value) => PanelEnum::CLAN->value,
             $user->hasRole(RoleEnum::SUPER_ADMIN->value) || $user->hasRole(RoleEnum::PLAYER->value) => PanelEnum::PLAYER->value,
             default => null,

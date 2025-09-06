@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use Filament\Auth\Pages\EditProfile;
 use Filament\Pages\Dashboard;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
@@ -31,12 +32,13 @@ final class PlayerPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->profile()
+            ->profile(page: EditProfile::class, isSimple: false)
             ->id(PanelEnum::PLAYER->value)
             ->path('player')
             ->colors([
                 'primary' => Color::Indigo,
             ])
+            ->maxContentWidth('full')
             ->discoverResources(in: app_path('Filament/Player/Resources'), for: 'App\\Filament\\Player\\Resources')
             ->discoverPages(in: app_path('Filament/Player/Pages'), for: 'App\\Filament\\Player\\Pages')
             ->pages([

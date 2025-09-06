@@ -2,9 +2,9 @@
 
 namespace App\Filament\Shared\Resources\Players\Pages;
 
-use Filament\Actions\DeleteAction;
 use App\Filament\Shared\Resources\Players\PlayerResource;
-use Filament\Actions;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPlayer extends EditRecord
@@ -14,6 +14,7 @@ class EditPlayer extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            ViewAction::make(),
             DeleteAction::make(),
         ];
     }

@@ -11,6 +11,7 @@ use App\Enums\RoleEnum;
 use BezhanSalleh\FilamentShield\FilamentShield;
 use BezhanSalleh\PanelSwitch\PanelSwitch;
 use Carbon\CarbonImmutable;
+use Filament\Auth\Http\Responses\Contracts\RegistrationResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -20,13 +21,19 @@ use Illuminate\Support\ServiceProvider;
 
 final class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * @var array<string, string>
-     */
-    public array $singletons = [
-        LoginResponse::class => \App\Http\Responses\LoginResponse::class,
-        LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
-    ];
+    /** @var array<class-string, class-string> */
+//    public array $singletons = [
+//        LoginResponse::class => \App\Http\Responses\LoginResponse::class,
+//        LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
+//        RegistrationResponse::class => \App\Http\Responses\RegistrationResponse::class,
+//    ];
+
+    public function register(): void
+    {
+        $this->app->bind(LoginResponse::class, \App\Http\Responses\LoginResponse::class);
+        $this->app->bind(LogoutResponse::class, \App\Http\Responses\LogoutResponse::class);
+        $this->app->bind(RegistrationResponse::class, \App\Http\Responses\RegistrationResponse::class);
+    }
 
     public function boot(): void
     {
