@@ -38,28 +38,9 @@ final class Registration extends Register
     {
         return $schema
             ->schema([
-                Wizard::make([
-                    Wizard\Step::make('Your Profile')
-                        ->schema([
-                            $this->getNickNameFormComponent(),
-                            $this->getSteamIdComponent(),
-                            $this->getDiscordUserIdComponent(),
-                            $this->getPreviousTeamsComponent(),
-                        ]),
-                    Wizard\Step::make('How You Play')
-                        ->schema([
-                            $this->getFirstGameRoleComponent(),
-                            $this->getSecondGameRoleComponent(),
-                            $this->getThirdGameRoleComponent(),
-                            $this->getFirstGamePlayStyleComponent(),
-                            $this->getSecondGamePlayStyleComponent(),
-                        ]),
-                    Wizard\Step::make('Password')
-                        ->schema([
-                            $this->getPasswordFormComponent(),
-                            $this->getPasswordConfirmationFormComponent(),
-                        ]),
-                ])
+                Wizard::make(
+                    $this->getWizardSteps()
+                )->skippable()
                     ->submitAction(new HtmlString(Blade::render(<<<'BLADE'
                     <x-filament::button
                         type="submit"
@@ -133,6 +114,47 @@ final class Registration extends Register
     protected function getFormActions(): array
     {
         return [];
+    }
+
+    private function getWizardSteps(): array
+    {
+        return [
+            'basic' => $this->getBasicInfoStep(),
+            'details' => $this->getDetailsStep(),
+            'password' => $this->getPasswordStep(),
+        ];
+    }
+
+    private function getBasicInfoStep(): Wizard\Step
+    {
+        return Wizard\Step::make('Your Profile')
+            ->schema([
+                $this->getNickNameFormComponent(),
+                $this->getSteamIdComponent(),
+                $this->getDiscordUserIdComponent(),
+                $this->getPreviousTeamsComponent(),
+            ]);
+    }
+
+    private function getDetailsStep(): Wizard\Step
+    {
+        return Wizard\Step::make('How You Play')
+            ->schema([
+                $this->getFirstGameRoleComponent(),
+                $this->getSecondGameRoleComponent(),
+                $this->getThirdGameRoleComponent(),
+                $this->getFirstGamePlayStyleComponent(),
+                $this->getSecondGamePlayStyleComponent(),
+            ]);
+    }
+
+    private function getPasswordStep(): Wizard\Step
+    {
+        return Wizard\Step::make('Password')
+            ->schema([
+                $this->getPasswordFormComponent(),
+                $this->getPasswordConfirmationFormComponent(),
+            ]);
     }
 
     private function getNickNameFormComponent(): TextInput
