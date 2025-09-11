@@ -9,11 +9,11 @@ use Illuminate\Contracts\Support\Htmlable;
 
 enum GamePlayStyleEnum: string implements HasLabel
 {
-    case FLEX = 'Flex';
-    case FLANK = 'Flank';
-    case BACKDOOR = 'Backdoor';
-    case FRONTLINE = 'Frontline';
-    case BACKLINE = 'Backline';
+    case FLEX = 'flex';
+    case FLANK = 'flank';
+    case BACKDOOR = 'backdoor';
+    case FRONTLINE = 'frontline';
+    case BACKLINE = 'backline';
 
     public function getLabel(): string|Htmlable|null
     {

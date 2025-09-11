@@ -9,19 +9,19 @@ use Illuminate\Contracts\Support\Htmlable;
 
 enum GameRoleEnum: string implements HasLabel
 {
-    case SL = 'Squad Leader';
-    case RF = 'Rifleman';
-    case MD = 'Medic';
-    case MA = 'Marksman';
-    case GL = 'Grenadier';
-    case CE = 'Combat Engineer';
-    case LMG = 'Light Machine Gunner';
-    case MG = 'Machine Gunner';
-    case LAT = 'Light Anti-Tank';
-    case HAT = 'Heavy Anti-Tank';
-    case PILOT = 'Pilot';
-    case CREWG = 'Crewman Gunner';
-    case CREWD = 'Crewman Driver';
+    case SL = 'squad-leader';
+    case RF = 'rifleman';
+    case MD = 'medic';
+    case MA = 'marksman';
+    case GL = 'grenadier';
+    case CE = 'combat-engineer';
+    case LMG = 'light-machine-gunner';
+    case MG = 'machine-gunner';
+    case LAT = 'light-anti-tank';
+    case HAT = 'heavy-anti-tank';
+    case PILOT = 'pilot';
+    case CREWG = 'crewman-gunner';
+    case CREWD = 'crewman-driver';
 
     public function getLabel(): string|Htmlable|null
     {

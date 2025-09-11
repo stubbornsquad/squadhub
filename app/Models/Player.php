@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\GamePlayStyleEnum;
+use App\Enums\GameRoleEnum;
 use Carbon\CarbonImmutable;
 use Database\Factories\PlayerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,10 +41,12 @@ final class Player extends Model
     public function casts(): array
     {
         return [
+            'first_game_role' => GameRoleEnum::class,
+            'second_game_role' => GameRoleEnum::class,
+            'third_game_role' => GameRoleEnum::class,
+            'first_gameplay_style' => GamePlayStyleEnum::class,
+            'second_gameplay_style' => GamePlayStyleEnum::class,
             'previous_teams' => 'array',
-            'joined_at' => 'immutable_datetime',
-            'created_at' => 'immutable_datetime',
-            'updated_at' => 'immutable_datetime',
         ];
     }
 
