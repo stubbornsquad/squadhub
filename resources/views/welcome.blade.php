@@ -172,12 +172,14 @@ declare(strict_types=1);
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})<br>
-                        SquadHub © {{ date('Y') }}. All rights reserved.
+                        @if(app()->isLocal())
+                            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})<br>
+                        @endif
+                        {{config('app.name')}} © {{ date('Y') }}. All rights reserved.
                     </footer>
                 </div>
             </div>
         </div>
     </body>
 </html>
-<?php 
+<?php
