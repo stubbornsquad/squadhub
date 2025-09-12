@@ -25,21 +25,21 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-final class ClanPanelProvider extends PanelProvider
+final class TeamPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id(PanelEnum::CLAN->value)
+            ->id(PanelEnum::TEAM->value)
             ->path('staff')
             ->colors([
                 'primary' => Color::Amber,
             ])
             ->maxContentWidth('full')
             ->resourceCreatePageRedirect('index')
-            ->discoverResources(in: app_path('Filament/Clan/Resources'), for: 'App\\Filament\\Clan\\Resources')
+            ->discoverResources(in: app_path('Filament/Team/Resources'), for: 'App\\Filament\\Team\\Resources')
             ->discoverResources(in: app_path('Filament/Shared/Resources'), for: 'App\\Filament\\Shared\\Resources')
-            ->discoverPages(in: app_path('Filament/Clan/Pages'), for: 'App\\Filament\\Clan\\Pages')
+            ->discoverPages(in: app_path('Filament/Team/Pages'), for: 'App\\Filament\\Team\\Pages')
             ->pages([
                 Dashboard::class,
             ])
@@ -54,7 +54,7 @@ final class ClanPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Settings'),
             ])
-            ->discoverWidgets(in: app_path('Filament/Clan/Widgets'), for: 'App\\Filament\\Clan\\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Team/Widgets'), for: 'App\\Filament\\Team\\Widgets')
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
