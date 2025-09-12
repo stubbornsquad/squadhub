@@ -19,7 +19,7 @@ final class RegistrationResponse implements BaseRegistrationResponse
         }
 
         $targetPanel = match (true) {
-            $user->hasAnyRole([RoleEnum::SUPER_ADMIN->value, RoleEnum::STAFF->value]) => PanelEnum::CLAN->value,
+            $user->hasAnyRole([RoleEnum::SUPER_ADMIN->value, RoleEnum::STAFF->value]) => PanelEnum::TEAM->value,
             $user->hasAnyRole([RoleEnum::SUPER_ADMIN->value, RoleEnum::PLAYER->value]) => PanelEnum::PLAYER->value,
             default => null,
         };

@@ -116,7 +116,7 @@ final class AppServiceProvider extends ServiceProvider
                         // Super Admins and Admins can access all panels
                         if (auth()->user()?->hasAnyRole([RoleEnum::SUPER_ADMIN, RoleEnum::ADMIN])) {
                             return [
-                                PanelEnum::CLAN->value,
+                                PanelEnum::TEAM->value,
                                 PanelEnum::PLAYER->value,
                             ];
                         }
@@ -124,7 +124,7 @@ final class AppServiceProvider extends ServiceProvider
                         // Staff can access the staff and player panels
                         if (auth()->user()?->hasAnyRole([RoleEnum::STAFF])) {
                             return [
-                                PanelEnum::CLAN->value,
+                                PanelEnum::TEAM->value,
                                 PanelEnum::PLAYER->value,
                             ];
                         }
@@ -133,13 +133,13 @@ final class AppServiceProvider extends ServiceProvider
                 ->modalWidth('sm')
                 ->slideOver()
                 ->icons([
-                    PanelEnum::CLAN->value => 'heroicon-o-star',
+                    PanelEnum::TEAM->value => 'heroicon-o-star',
                     PanelEnum::PLAYER->value => 'heroicon-o-star',
                 ])
                 ->iconSize(16)
                 ->labels([
-                    PanelEnum::CLAN->value => 'Clan Panel',
-                    PanelEnum::PLAYER->value => 'Player Panel',
+                    PanelEnum::TEAM->value => PanelEnum::TEAM->getPanelLabel(),
+                    PanelEnum::PLAYER->value => PanelEnum::PLAYER->getPanelLabel(),
                 ]);
         });
     }

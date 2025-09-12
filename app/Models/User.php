@@ -63,7 +63,7 @@ final class User extends Authenticatable implements FilamentUser, HasName
     {
         return match ($panel->getId()) {
             PanelEnum::AUTH->value => true, // Added true fot have possibility get correct redirect based on user role in LoginResponse
-            PanelEnum::CLAN->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::STAFF->value),
+            PanelEnum::TEAM->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::STAFF->value),
             PanelEnum::PLAYER->value => $this->hasRole(RoleEnum::SUPER_ADMIN->value) || $this->hasRole(RoleEnum::STAFF->value) || $this->hasRole(RoleEnum::PLAYER->value),
             default => false,
         };
@@ -84,8 +84,6 @@ final class User extends Authenticatable implements FilamentUser, HasName
         return [
             'email_verified_at' => 'immutable_datetime',
             'password' => 'hashed',
-            'created_at' => 'immutable_datetime',
-            'updated_at' => 'immutable_datetime',
         ];
     }
 }
