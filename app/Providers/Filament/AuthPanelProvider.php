@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
-use App\Filament\Pages\Login;
-use App\Filament\Pages\Registration;
+use App\Filament\Pages\Auth\LoginPage;
+use App\Filament\Pages\Auth\RegistrationPage;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,8 +27,8 @@ final class AuthPanelProvider extends PanelProvider
         return $panel
             ->id('auth')
             ->path('')
-            ->login(Login::class)
-            ->registration(Registration::class)
+            ->login(LoginPage::class)
+            ->registration(RegistrationPage::class)
             ->passwordReset()
             ->colors([
                 'primary' => Color::Amber,
