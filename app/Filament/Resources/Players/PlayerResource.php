@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\Players;
+namespace App\Filament\Resources\Players;
 
-use App\Filament\Shared\Resources\Players\Pages\CreatePlayer;
-use App\Filament\Shared\Resources\Players\Pages\EditPlayer;
-use App\Filament\Shared\Resources\Players\Pages\ListPlayers;
+use App\Filament\Resources\Players\Pages\CreatePlayer;
+use App\Filament\Resources\Players\Pages\EditPlayer;
+use App\Filament\Resources\Players\Pages\ListPlayers;
+use App\Filament\Resources\Players\Schemas\PlayerForm;
+use App\Filament\Resources\Players\Tables\PlayersTable;
 use App\Filament\Shared\Resources\Players\Pages\ViewPlayer;
-use App\Filament\Shared\Resources\Players\Schemas\PlayerForm;
 use App\Filament\Shared\Resources\Players\Schemas\PlayerInfolist;
-use App\Filament\Shared\Resources\Players\Tables\PlayersTable;
 use App\Models\Player;
 use BackedEnum;
 use Filament\Resources\Resource;

@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\Players\Schemas;
+namespace App\Filament\Resources\Players\Schemas;
 
 use App\Enums\GamePlayStyleEnum;
 use App\Enums\GameRoleEnum;
-use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\Wizard;

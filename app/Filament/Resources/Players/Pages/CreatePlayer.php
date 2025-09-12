@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\Players\Pages;
+namespace App\Filament\Resources\Players\Pages;
 
 use App\Enums\RoleEnum;
-use App\Filament\Shared\Resources\Players\PlayerResource;
+use App\Filament\Resources\Players\PlayerResource;
 use App\Models\Player;
 use App\Models\User;
 use Carbon\CarbonImmutable;
-use Filament\Actions\Action;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\Players\Pages;
+namespace App\Filament\Resources\Players\Pages;
 
-use App\Filament\Shared\Resources\Players\PlayerResource;
+use App\Filament\Resources\Players\PlayerResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 

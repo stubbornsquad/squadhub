@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\Players\Pages;
+namespace App\Filament\Resources\Players\Pages;
 
 use App\Enums\GamePlayStyleEnum;
 use App\Enums\GameRoleEnum;
-use App\Filament\Shared\Resources\Players\PlayerResource;
+use App\Filament\Resources\Players\PlayerResource;
 use App\Models\Player;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\EditAction;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
@@ -22,10 +20,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\Rules\Unique;
 
 final class EditPlayer extends EditRecord
 {

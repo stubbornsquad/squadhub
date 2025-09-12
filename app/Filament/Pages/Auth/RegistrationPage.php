@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Pages;
+namespace App\Filament\Pages\Auth;
 
 use App\Enums\GamePlayStyleEnum;
 use App\Enums\GameRoleEnum;
@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\HtmlString;
 
-final class Registration extends Register
+final class RegistrationPage extends Register
 {
     public function getMaxContentWidth(): Width
     {

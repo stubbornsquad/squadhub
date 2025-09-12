@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Pages;
+namespace App\Filament\Pages\Auth;
 
 use Filament\Auth\Pages\Login as BaseLogin;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use SensitiveParameter;
 
-final class Login extends BaseLogin
+final class LoginPage extends BaseLogin
 {
     public function form(Schema $schema): Schema
     {

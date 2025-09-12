@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\Roles;
+namespace App\Filament\Resources\Roles;
 
-use App\Filament\Shared\Resources\Roles\Pages\CreateRole;
-use App\Filament\Shared\Resources\Roles\Pages\EditRole;
-use App\Filament\Shared\Resources\Roles\Pages\ListRoles;
-use App\Filament\Shared\Resources\Roles\Pages\ViewRole;
+use App\Filament\Resources\Roles\Pages\CreateRole;
+use App\Filament\Resources\Roles\Pages\EditRole;
+use App\Filament\Resources\Roles\Pages\ListRoles;
+use App\Filament\Resources\Roles\Pages\ViewRole;
+use App\Filament\Shared\Resources\Roles\ShieldSelectAllToggle;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Support\Utils;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;

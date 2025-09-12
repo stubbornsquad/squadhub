@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Shared\Resources\Roles\Pages;
+namespace App\Filament\Resources\Roles\Pages;
 
-use App\Filament\Shared\Resources\Roles\RoleResource;
+use App\Filament\Resources\Roles\RoleResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
