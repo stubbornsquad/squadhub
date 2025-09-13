@@ -31,7 +31,7 @@ final class TeamPanelProvider extends PanelProvider
     {
         return $panel
             ->id(PanelEnum::TEAM->value)
-            ->path('staff')
+            ->path('team')
             ->colors([
                 'primary' => Color::Amber,
             ])
